@@ -8,8 +8,18 @@
  * Learn more at https://developers.cloudflare.com/workers/
  */
 
+import Bucket from 'Bucket';
+
 export default {
-	async fetch(request, env, ctx) {
-		return new Response('Hello World!');
-	},
+	async fetch(request, env) {
+	  const url = new URL(request.url);
+	  const sHost = request.header('Host');
+	  const oBucket = new Bucket(env);
+	  const key = `${sHost}/${url.pathname.slice(1)}`;
+  
+	  if (request.method == "GET") {
+	  }else{
+
+	  }
+	}
 };
