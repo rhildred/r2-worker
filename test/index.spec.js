@@ -5,7 +5,10 @@ import fs from "node:fs";
 
 describe('Hello World worker', () => {
 	it('responds with Hello World! (unit style)', async () => {
-		const request = new Request('http://example.com');
+		const headers = new Headers();
+		headers.append("Host", "k3p.ca");
+
+		const request = new Request('http://example.com', {headers, method:"GET"});
 		// Create an empty context to pass to `worker.fetch()`.
 		const ctx = createExecutionContext();
 		const response = await worker.fetch(request, {fs}, ctx);
